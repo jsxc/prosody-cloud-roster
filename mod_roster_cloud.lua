@@ -6,8 +6,19 @@ local secret = module:get_option_string('roster_cloud_secret')
 module:require "sha1"
 local JSON = module:require "json"
 
+local function url_encode(str)
+  if (str) then
+    str = string.gsub (str, "\n", "\r\n")
+    str = string.gsub (str, "([^%w %-%_%.%~])",
+        function (c) return string.format ("%%%02X", string.byte(c)) end)
+    str = string.gsub (str, " ", "+")
+  end
+
+  return str
+end
+
 local function sendRequest(username)
-	local request_body = 'username='..username..'&operation=shared_roster'
+	local request_body = 'username='..url_encode(username)..'&operation=sharedroster'
 	local response_body = {}
 
 	local signature = hmac_sha1(secret, request_body)
