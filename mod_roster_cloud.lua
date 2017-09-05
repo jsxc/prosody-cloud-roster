@@ -1,5 +1,6 @@
 local https = require "ssl.https"
-local timer = require 'util.timer';
+local ltn12 = require 'ltn12'
+local timer = require 'util.timer'
 local url = module:get_option_string('roster_cloud_url')
 local secret = module:get_option_string('roster_cloud_secret')
 
