@@ -82,11 +82,11 @@ end
 
 function module.load()
 	if url == nil then
-		module:log('debug', 'Disabled, because we have no url')
+		module:log('warn', 'Disabled, because we have no url')
 		return
 	end
 
-	module:log('debug', 'Loaded. Useing the following endpoint: '..url)
+	module:log('debug', 'Loaded. Using the following endpoint: '..url)
 
 	module:hook('roster-load', inject_roster_contacts);
 end
