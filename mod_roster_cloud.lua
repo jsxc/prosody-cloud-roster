@@ -39,7 +39,8 @@ local function sendRequest(username)
 	return table.concat(response_body), status
 end
 
-local function inject_roster_contacts(username, host, roster)
+local function inject_roster_contacts(event)
+	local username, host, roster = event.username, event.host, event.roster;
 	module:log('debug', 'inject roster contacts for '..username)
 
 	local body, status = sendRequest(username)
